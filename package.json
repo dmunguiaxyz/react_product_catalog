@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development",
+    "build:dev": "webpack --mode development",
+    "start": "webpack serve --mode production",
+    "start:dev": "webpack serve --mode development",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\""
   },
@@ -17,7 +19,8 @@
   "keywords": [],
   "author": "David Munguia",
   "engines": {
-    "node": ">=25.0.0"
+    "node": ">=25.0.0",
+    "npm": ">=9.0.0"
   },
   "license": "ISC",
   "type": "commonjs",
