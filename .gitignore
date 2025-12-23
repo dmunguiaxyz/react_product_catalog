@@ -137,18 +137,3 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
-# catalog/ React app
-catalog/node_modules
-catalog/.pnp
-catalog/.pnp.js
-catalog/coverage
-catalog/build
-catalog/.DS_Store
-catalog/.env.local
-catalog/.env.development.local
-catalog/.env.test.local
-catalog/.env.production.local
-catalog/npm-debug.log*
-catalog/yarn-debug.log*
-catalog/yarn-error.log*
