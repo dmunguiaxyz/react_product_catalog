@@ -4,9 +4,8 @@ import './ProductItem.css';
 
 export default function ProductItem(props:{product:Product}){
     const {product} = props;
-    const itemKey = `${product.id}-${product.name}`;
     return(
-        <li className="product-card" key={itemKey}>
+        <li className="product-card">
             <div className="product-image">
                 <img src={product.imageUrl} alt={product.name} />
             </div>

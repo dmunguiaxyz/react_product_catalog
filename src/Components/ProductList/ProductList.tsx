@@ -3,7 +3,8 @@ import ProductItem from "../ProductItem/ProductItem";
 
 export default function ProductList(){
     const products = Db().map(product=>{
-        return <ProductItem product={product}></ProductItem>
+        const itemKey = `${product.id}-${product.name}`
+        return <ProductItem key={itemKey} product={product}></ProductItem>
     });
     if(!products){
         return <div>Loading products...</div>;
