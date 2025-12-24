@@ -1,8 +1,16 @@
-import { Product } from "../../Models/Product";
+import { Product } from '../../Models/Product';
 
-
-export default  function Db(): Product[] {
-  const categories = ['Electronics', 'Clothing', 'Books', 'Home & Garden', 'Sports', 'Toys', 'Food', 'Beauty'];
+export default function Db(): Product[] {
+  const categories = [
+    'Electronics',
+    'Clothing',
+    'Books',
+    'Home & Garden',
+    'Sports',
+    'Toys',
+    'Food',
+    'Beauty',
+  ];
   const products: Product[] = [];
 
   for (let i = 1; i <= 100; i++) {
@@ -14,7 +22,7 @@ export default  function Db(): Product[] {
       category: categories[Math.floor(Math.random() * categories.length)],
       stock: Math.floor(Math.random() * 100),
       imageUrl: `https://picsum.photos/seed/${i}/300/300`,
-      rating: parseFloat((Math.random() * 2 + 3).toFixed(1))
+      rating: parseFloat((Math.random() * 2 + 3).toFixed(1)),
     });
   }
 
