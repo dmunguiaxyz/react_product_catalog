@@ -6,17 +6,16 @@ import ProductFilters from "./Components/ProductFilters/productFilters";
 
 export default function App(){
     const [searchTerm, setSearchTerm] = useState("")
+    const [selectedCategory, setSelectedCategory] = useState("all");
+    const [selectedPriceRange, setSelectedPriceRange] = useState<[number, number]>([0, 1000]);
     const handleInputChange = (event: any) => {
-        //this will trigger a re-render on each input change
         setSearchTerm(event.target.value);
     }
     const handleCataegoryChange = (category:string) => {
-        //implement category filter logic here
-        console.log("Selected category:", category);
+        setSelectedCategory(category);
     }
     const handlePriceChange = (priceRange:[number,number]) => {
-        //implement price filter logic here
-        console.log("Selected price range:", priceRange);
+        setSelectedPriceRange(priceRange);
     }
     return (<> <div><NavigationBar></NavigationBar></div>
     <div>
@@ -26,7 +25,7 @@ export default function App(){
         <SearchBar handleInputChange={handleInputChange}></SearchBar>
     </div>
     <div>
-        <ProductList searchTerm={searchTerm}></ProductList>
+        <ProductList searchTerm={searchTerm} filters={{category: selectedCategory, priceRange: selectedPriceRange}}></ProductList>
     </div>
     </>);
 }
