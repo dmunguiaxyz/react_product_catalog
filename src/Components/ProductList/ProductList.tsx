@@ -17,7 +17,7 @@ export default function ProductList(props: {
     .filter(
       product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (filters.category === 'all' || product.category === filters.category) &&
+        (filters.category.toLowerCase() === 'all' || product.category.toLowerCase() === filters.category.toLowerCase()) &&
         product.price >= filters.priceRange[0] &&
         product.price <= filters.priceRange[1]
     )

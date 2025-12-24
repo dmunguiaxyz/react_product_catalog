@@ -1,3 +1,4 @@
+import { Categories } from '../../Services/DataService/data.service';
 import './productFilters.css';
 
 export default function ProductFilters(props: {
@@ -5,6 +6,19 @@ export default function ProductFilters(props: {
   handlePriceChange?: (priceRange: [number, number]) => void;
 }) {
   const { handleCategoryChange, handlePriceChange } = props;
+
+  let filterOptions = Categories.map((category,index) => (
+    <option key={`${category}-${index}`} value={category}>
+      {category}
+    </option>
+  ));
+
+  filterOptions.unshift(
+    <option key={`all-categories`} value="all">
+      All
+    </option>
+  );
+  
   return (
     <div className="filters-container">
       <div className="filter-group">
@@ -16,11 +30,7 @@ export default function ProductFilters(props: {
             handleCategoryChange && handleCategoryChange(e.target.value)
           }
         >
-          <option value="all">All Categories</option>
-          <option value="electronics">Electronics</option>
-          <option value="clothing">Clothing</option>
-          <option value="books">Books</option>
-          <option value="home">Home & Garden</option>
+          {filterOptions}
         </select>
       </div>
 
