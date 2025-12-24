@@ -37,5 +37,8 @@ module.exports = {
     port: 3000,
     hot: true,
     open: true
+  },
+  performance: {
+    hints: false
   }
 };

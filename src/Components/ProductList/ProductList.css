@@ -1,0 +1,16 @@
+.product-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .product-list {
+    padding: 12px;
+    gap: 12px;
+  }
+}

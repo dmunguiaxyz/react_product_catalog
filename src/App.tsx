@@ -1,5 +1,6 @@
-import Profile from "./Components/Profile";
+import ProductList from "./Components/ProductList/ProductList";
 
 export default function App(){
-    return (<div><h1>Welcome to the Product Catalog App</h1><Profile></Profile></div>);
+    return (<> <h1>Welcome to the Product Catalog App</h1>
+    <ProductList></ProductList></>);
 }
