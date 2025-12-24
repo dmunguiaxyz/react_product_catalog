@@ -1,4 +1,4 @@
-import './searchBar.css';
+import './SearchBar.css';
 
 export default function SearchBar(props: {
   handleInputChange: (event: any) => void;

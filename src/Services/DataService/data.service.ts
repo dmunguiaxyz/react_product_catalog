@@ -1,17 +1,5 @@
+import { Categories } from '../../Constants/filter.constant';
 import { Product } from '../../Models/Product';
-
-
-export const Categories: string[] = [
-  'Electronics',
-  'Clothing',
-  'Books',
-  'Home & Garden',
-  'Sports',
-  'Toys',
-  'Food',
-  'Beauty',
-]
-
 
 export default function Db(): Product[] {
 

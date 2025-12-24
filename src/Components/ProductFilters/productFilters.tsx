@@ -1,4 +1,5 @@
-import { Categories } from '../../Services/DataService/data.service';
+
+import { Categories } from '../../Constants/filter.constant';
 import './productFilters.css';
 
 export default function ProductFilters(props: {

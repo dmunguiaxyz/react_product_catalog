@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ProductList from './Components/ProductList/ProductList';
-import SearchBar from './Components/SearchBar/searchBar';
 import NavigationBar from './Components/NavigationBar/navigationBar';
 import ProductFilters from './Components/ProductFilters/productFilters';
+import SearchBar from './Components/SearchBar/SearchBar';
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
