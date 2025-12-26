@@ -53,9 +53,9 @@ export default function ProductList(props: {
   }
   return (
     <>
-      <Pagination pageSize={productData.pageSize} totalPages={productData.totalPages} handlePageChange={handlePageChange}></Pagination>
+      <Pagination  totalPages={productData.totalPages} handlePageChange={handlePageChange}></Pagination>
       <ul className="product-list">{products}</ul>
-      <Pagination pageSize={productData.pageSize} totalPages={productData.totalPages} handlePageChange={handlePageChange}></Pagination>
+      <Pagination totalPages={productData.totalPages} handlePageChange={handlePageChange}></Pagination>
     </>
   );
 }
