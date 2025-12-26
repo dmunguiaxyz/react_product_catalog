@@ -13,7 +13,7 @@ export default function Db(): Product[] {
       price: parseFloat((Math.random() * 500 + 10).toFixed(2)),
       //exclude 'All' from random category assignment
       category: Categories[Math.floor(Math.random() * (Categories.length))],
-      stock: Math.floor(Math.random() * 100),
+      stockQuantity: Math.floor(Math.random() * 100),
       imageUrl: `https://picsum.photos/seed/${i}/300/300`,
       rating: parseFloat((Math.random() * 2 + 3).toFixed(1)),
     });

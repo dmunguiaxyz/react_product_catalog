@@ -1,27 +1,26 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import ProductList from './Components/ProductList/ProductList';
 import NavigationBar from './Components/NavigationBar/navigationBar';
 import ProductFilters from './Components/ProductFilters/productFilters';
 import SearchBar from './Components/SearchBar/SearchBar';
+import filterReducer from './Reducers/filter.reducer';
 
 export default function App() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedPriceRange, setSelectedPriceRange] = useState<
-    [number, number]
-  >([0, 1000]);
+  const [filters,dispatchFilter] = useReducer(filterReducer, {category: 'all', priceRange: [0, 1000], searchTerm: ''});
+
   const handleInputChange = (event: any) => {
-    setSearchTerm(event.target.value);
+    dispatchFilter({type: 'SET_SEARCH_TERM', payload: event.target.value});
   };
   const handleCataegoryChange = (category: string) => {
-    setSelectedCategory(category);
+    dispatchFilter({type: 'SET_CATEGORY', payload: category});
+    
   };
   const handlePriceChange = (priceRange: [number, number]) => {
-    setSelectedPriceRange(priceRange);
+    dispatchFilter({type: 'SET_PRICE_RANGE', payload: priceRange});
   };
+  
   return (
     <>
-      {' '}
       <div>
         <NavigationBar></NavigationBar>
       </div>
@@ -36,11 +35,7 @@ export default function App() {
       </div>
       <div>
         <ProductList
-          searchTerm={searchTerm}
-          filters={{
-            category: selectedCategory,
-            priceRange: selectedPriceRange,
-          }}
+          filters={filters}
         ></ProductList>
       </div>
     </>

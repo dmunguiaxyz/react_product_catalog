@@ -4,19 +4,20 @@ import Pagination from '../Pagination/pagination';
 import ProductItem from '../ProductItem/ProductItem';
 
 export default function ProductList(props: {
-  searchTerm: string;
+  
   filters: {
     category: string;
     priceRange: [number, number];
+    searchTerm: string;
   };
 }) {
-  const { searchTerm, filters } = props;
+  const { filters } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
   let products = Db()
     .filter(
       product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        product.name.toLowerCase().includes(filters.searchTerm.toLowerCase()) &&
         (filters.category.toLowerCase() === 'all' || product.category.toLowerCase() === filters.category.toLowerCase()) &&
         product.price >= filters.priceRange[0] &&
         product.price <= filters.priceRange[1]
