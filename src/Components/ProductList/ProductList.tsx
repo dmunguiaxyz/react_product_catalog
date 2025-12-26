@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import Db from '../../Services/DataService/data.service';
+import { useEffect, useState } from 'react';
+import  { fetchProducts } from '../../Services/DataService/data.service';
 import Pagination from '../Pagination/pagination';
 import ProductItem from '../ProductItem/ProductItem';
+import { ProductDataResponseMetadata } from '../../Models/Product';
 
 export default function ProductList(props: {
   
@@ -13,21 +14,37 @@ export default function ProductList(props: {
 }) {
   const { filters } = props;
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
-  let products = Db()
-    .filter(
-      product =>
-        product.name.toLowerCase().includes(filters.searchTerm.toLowerCase()) &&
-        (filters.category.toLowerCase() === 'all' || product.category.toLowerCase() === filters.category.toLowerCase()) &&
-        product.price >= filters.priceRange[0] &&
-        product.price <= filters.priceRange[1]
-    )
-    .map(product => {
+  const [products,setProducts] = useState<any[]>([])
+  const [productData, setProductData] = useState<ProductDataResponseMetadata>({
+    pageNumber: 1,
+    pageSize: 10,
+    totalCount: 0,
+    totalPages: 0,
+    hasPreviousPage: false,
+    hasNextPage: false,
+  });
+
+  useEffect(()=>{
+    fetchProducts({category:filters.category, minPrice:filters.priceRange[0], maxPrice:filters.priceRange[1], pageNumber:currentPage}).then(data=>{
+      const items = data.items.map(product => {
       const itemKey = `${product.id}-${product.name}`;
       return <ProductItem key={itemKey} product={product}></ProductItem>;
     });
-  const totalPages = Math.ceil(products.length / pageSize);
-  products = products.slice(pageSize * (currentPage - 1), currentPage * pageSize);
+      setProducts(items);
+      setProductData({
+        pageNumber: data.pageNumber,
+        pageSize: data.pageSize,
+        totalCount: data.totalCount,
+        totalPages: data.totalPages,
+        hasPreviousPage: data.hasPreviousPage,
+        hasNextPage: data.hasNextPage,
+      });
+    })
+    .catch(err=>{
+      console.error('Error fetching products:', err);
+    });
+  }, [filters, currentPage]);
+  
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   }
@@ -36,9 +53,9 @@ export default function ProductList(props: {
   }
   return (
     <>
-      <Pagination pageSize={pageSize} totalPages={totalPages} handlePageChange={handlePageChange}></Pagination>
+      <Pagination pageSize={productData.pageSize} totalPages={productData.totalPages} handlePageChange={handlePageChange}></Pagination>
       <ul className="product-list">{products}</ul>
-      <Pagination pageSize={pageSize} totalPages={totalPages} handlePageChange={handlePageChange}></Pagination>
+      <Pagination pageSize={productData.pageSize} totalPages={productData.totalPages} handlePageChange={handlePageChange}></Pagination>
     </>
   );
 }

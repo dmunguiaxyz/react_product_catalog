@@ -8,3 +8,18 @@ export interface Product {
   imageUrl: string;
   rating: number;
 }
+
+export interface ProductDataResponseMetadata {
+  pageNumber:number;
+  pageSize:number;
+  totalCount:number;
+  totalPages:number;
+  hasPreviousPage:boolean;
+  hasNextPage:boolean;
+}
+
+export interface ProductResponse extends ProductDataResponseMetadata {
+  items:Product[];
+  
+}
+
