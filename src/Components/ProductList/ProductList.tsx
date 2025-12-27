@@ -40,6 +40,18 @@ export default function ProductList(props: {
           hasPreviousPage: data.hasPreviousPage,
           hasNextPage: data.hasNextPage,
         });
+        return ()=>{
+          //cleanup
+          setProducts([]);
+          setProductData({
+            pageNumber: 1,
+            pageSize: 10,
+            totalCount: 0,
+            totalPages: 0,
+            hasPreviousPage: false,
+            hasNextPage: false,
+          });
+        }
       })
       .catch(err => {
         console.error('Error fetching products:', err);
