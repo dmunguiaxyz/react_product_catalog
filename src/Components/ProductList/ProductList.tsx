@@ -24,6 +24,7 @@ export default function ProductList(props: {
   });
 
   useEffect(() => {
+    let isMounted = true;
     fetchProducts({
       category: filters.category,
       minPrice: filters.priceRange[0],
@@ -31,31 +32,27 @@ export default function ProductList(props: {
       pageNumber: currentPage,
     })
       .then(data => {
-        setProducts(data.items);
-        setProductData({
-          pageNumber: data.pageNumber,
-          pageSize: data.pageSize,
-          totalCount: data.totalCount,
-          totalPages: data.totalPages,
-          hasPreviousPage: data.hasPreviousPage,
-          hasNextPage: data.hasNextPage,
-        });
-        return ()=>{
-          //cleanup
-          setProducts([]);
+        if (isMounted) {
+          setProducts(data.items);
           setProductData({
-            pageNumber: 1,
-            pageSize: 10,
-            totalCount: 0,
-            totalPages: 0,
-            hasPreviousPage: false,
-            hasNextPage: false,
+            pageNumber: data.pageNumber,
+            pageSize: data.pageSize,
+            totalCount: data.totalCount,
+            totalPages: data.totalPages,
+            hasPreviousPage: data.hasPreviousPage,
+            hasNextPage: data.hasNextPage,
           });
         }
       })
       .catch(err => {
-        console.error('Error fetching products:', err);
+        if (isMounted) {
+          console.error('Error fetching products:', err);
+        }
       });
+    return () => {
+      //cleanup
+      isMounted = false;
+    };
   }, [filters, currentPage]);
 
   const handlePageChange = (pageNumber: number) => {
