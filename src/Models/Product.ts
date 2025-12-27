@@ -10,16 +10,14 @@ export interface Product {
 }
 
 export interface ProductDataResponseMetadata {
-  pageNumber:number;
-  pageSize:number;
-  totalCount:number;
-  totalPages:number;
-  hasPreviousPage:boolean;
-  hasNextPage:boolean;
+  pageNumber: number;
+  pageSize: number;
+  totalCount: number;
+  totalPages: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
 }
 
 export interface ProductResponse extends ProductDataResponseMetadata {
-  items:Product[];
-  
+  items: Product[];
 }
-

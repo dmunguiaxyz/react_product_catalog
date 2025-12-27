@@ -6,19 +6,22 @@ import SearchBar from './Components/SearchBar/SearchBar';
 import filterReducer from './Reducers/filter.reducer';
 
 export default function App() {
-  const [filters,dispatchFilter] = useReducer(filterReducer, {category: 'all', priceRange: [0, 1000], searchTerm: ''});
+  const [filters, dispatchFilter] = useReducer(filterReducer, {
+    category: 'all',
+    priceRange: [0, 1000],
+    searchTerm: '',
+  });
 
   const handleInputChange = (event: any) => {
-    dispatchFilter({type: 'SET_SEARCH_TERM', payload: event.target.value});
+    dispatchFilter({ type: 'SET_SEARCH_TERM', payload: event.target.value });
   };
   const handleCataegoryChange = (category: string) => {
-    dispatchFilter({type: 'SET_CATEGORY', payload: category});
-    
+    dispatchFilter({ type: 'SET_CATEGORY', payload: category });
   };
   const handlePriceChange = (priceRange: [number, number]) => {
-    dispatchFilter({type: 'SET_PRICE_RANGE', payload: priceRange});
+    dispatchFilter({ type: 'SET_PRICE_RANGE', payload: priceRange });
   };
-  
+
   return (
     <>
       <div>
@@ -34,9 +37,7 @@ export default function App() {
         <SearchBar handleInputChange={handleInputChange}></SearchBar>
       </div>
       <div>
-        <ProductList
-          filters={filters}
-        ></ProductList>
+        <ProductList filters={filters}></ProductList>
       </div>
     </>
   );

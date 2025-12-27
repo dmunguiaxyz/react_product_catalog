@@ -20,8 +20,14 @@ export default function ProductItem(props: { product: Product }) {
             <span className="product-rating">⭐ {product.rating}</span>
           </div>
           <div className="product-stock">
-            <span className={product.stockQuantity > 0 ? 'in-stock' : 'out-of-stock'}>
-              {product.stockQuantity > 0 ? `${product.stockQuantity} in stock` : 'Out of stock'}
+            <span
+              className={
+                product.stockQuantity > 0 ? 'in-stock' : 'out-of-stock'
+              }
+            >
+              {product.stockQuantity > 0
+                ? `${product.stockQuantity} in stock`
+                : 'Out of stock'}
             </span>
           </div>
         </div>

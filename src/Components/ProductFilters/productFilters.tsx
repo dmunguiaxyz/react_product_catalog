@@ -1,4 +1,3 @@
-
 import { Categories } from '../../Constants/filter.constant';
 import './productFilters.css';
 
@@ -8,7 +7,7 @@ export default function ProductFilters(props: {
 }) {
   const { handleCategoryChange, handlePriceChange } = props;
 
-  let filterOptions = Categories.map((category,index) => (
+  let filterOptions = Categories.map((category, index) => (
     <option key={`${category}-${index}`} value={category}>
       {category}
     </option>
@@ -19,7 +18,7 @@ export default function ProductFilters(props: {
       All
     </option>
   );
-  
+
   return (
     <div className="filters-container">
       <div className="filter-group">
